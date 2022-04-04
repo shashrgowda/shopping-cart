@@ -15,7 +15,7 @@ const ProductDetail = ({ current, addToCart }) => {
       <div className="productDetail__details">
         <p className="details__title">{current.title}</p>
         <p className="details__description">{current.description}</p>
-        <p className="details__price">$ {current.price}</p>
+        <p className="details__price">£ {current.price.toFixed(2)}</p>
 
         <button
           onClick={() => addToCart(current.id)}

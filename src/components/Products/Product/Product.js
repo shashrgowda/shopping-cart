@@ -1,29 +1,32 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 import "./Product.css";
 
 import { loadCurrentItem, addToCart } from "../../../redux/Shopping/actions";
 
-const Product = ({ product }) => {
+const Product = ({ product, addToCart, loadCurrentItem }) => {
   return (
     <Card className="product__card" key={product.id} style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={product.image} width="200px" />
+      <Link to={`/product/${product.id}`}>
+        <Card.Img
+          variant="top"
+          src={product.image}
+          width="200px"
+          onClick={() => loadCurrentItem(product)}
+        />
+      </Link>
+
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          £{product.price}
+          £{product.price.toFixed(2)}
         </Card.Subtitle>
-        <Card.Link
-          href={`/product/${product.id}`}
-          className="button"
-          onClick={() => loadCurrentItem(product)}
-        >
-          View Item
-        </Card.Link>
-        <Card.Link className="button" onClick={() => addToCart(product.id)}>
-          Add to Cart
-        </Card.Link>
+        <button className="button" onClick={() => addToCart(product.id)}>
+          Add To Cart
+        </button>
       </Card.Body>
     </Card>
   );

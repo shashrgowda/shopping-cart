@@ -13,6 +13,8 @@ const INITIAL_STATE = {
       description: "Surgical facemask.",
       price: 2.5,
       image: "https://m.media-amazon.com/images/I/71Nmp7kHIIS._SX522_.jpg",
+      quantity: 0,
+      maxQty: 5,
     },
     {
       id: 2,
@@ -20,6 +22,8 @@ const INITIAL_STATE = {
       description: "Three-ply Toilet Paper",
       price: 0.65,
       image: "https://m.media-amazon.com/images/I/71QeQD2r7mL._SX522_.jpg",
+      quantity: 0,
+      maxQty: 5,
     },
   ],
   cart: [],
@@ -30,7 +34,6 @@ const shopReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case ADD_TO_CART:
       const item = state.products.find((product) => product.id === payload.id);
-      // Check if Item is in cart already
       const inCart = state.cart.find((item) =>
         item.id === payload.id ? true : false
       );

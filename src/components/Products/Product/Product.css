@@ -4,6 +4,12 @@
   padding: 2px;
   margin: 50px;
   text-align: center;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none !important;
+  color: var(--dark-color) !important;
 }
 
 .button {

@@ -1,6 +1,11 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
-import Cart from "./components/Cart/CartItem/CartItem";
+import Cart from "./components/Cart/Cart";
 import Header from "./components/Navbar/Navbar";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Products from "./components/Products/Products";
@@ -11,15 +16,15 @@ function App({ current }) {
     <Router>
       <div className="App">
         <Header />
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/cart" element={<Cart />} />
+        <Switch>
+          <Route exact path="/" component={Products} />
+          <Route exact path="/cart" component={Cart} />
           {!current ? (
-            <Route path="/" />
+            <Redirect to="/" />
           ) : (
-            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route exact path="/product/:id" component={ProductDetail} />
           )}
-        </Routes>
+        </Switch>
       </div>
     </Router>
   );

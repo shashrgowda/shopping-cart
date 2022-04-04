@@ -33,7 +33,7 @@ const Cart = ({ cart }) => {
         <h4 className="summary__title">Cart Summary</h4>
         <div className="summary__price">
           <span>TOTAL: ({totalItems} items)</span>
-          <span>£ {totalPrice}</span>
+          <span>£ {totalPrice.toFixed(2)}</span>
         </div>
         <button className="summary__checkoutBtn">Proceed To Checkout</button>
       </div>
