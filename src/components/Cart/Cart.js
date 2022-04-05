@@ -15,7 +15,15 @@ const Cart = ({ cart }) => {
 
     cart.forEach((item) => {
       items += item.qty;
-      price += item.qty * item.price;
+      const itemTotal = item.price * item.qty;
+      const threshold = item.qty / item.discountQty;
+
+      if (item.id === 1) {
+        price +=
+          item.qty % 2 === 0 ? itemTotal - item.qty + threshold : item.price;
+      } else {
+        price += item.qty % 6 === 0 ? itemTotal - item.price : itemTotal;
+      }
     });
 
     setTotalItems(items);
@@ -26,7 +34,7 @@ const Cart = ({ cart }) => {
     <div className="cart">
       <div className="cart__items">
         {cart.map((item) => (
-          <CartItem key={item.id} item={item} />
+          <CartItem key={item.id} item={item} totalPrice={totalPrice} />
         ))}
       </div>
       <div className="cart__summary">

@@ -12,15 +12,13 @@ const CartItem = ({ item, adjustQty, removeFromCart }) => {
     adjustQty(item.id, e.target.value);
   };
 
-  const itemTotal = item.price * input;
-
   return (
     <div className="cartItem">
       <img className="cartItem__image" src={item.image} alt={item.title} />
       <div className="cartItem__details">
         <p className="styles.details__title">{item.title}</p>
         <p className="details__desc">{item.description}</p>
-        <p className="details__price">£ {itemTotal.toFixed(2)}</p>
+        <p className="details__price">£{item.price.toFixed(2)}</p>
       </div>
       <div className="cartItem__actions">
         <div className="cartItem__qty">
