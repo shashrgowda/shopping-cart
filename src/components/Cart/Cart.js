@@ -17,12 +17,16 @@ const Cart = ({ cart }) => {
       items += item.qty;
       const itemTotal = item.price * item.qty;
       const threshold = item.qty / item.discountQty;
+      const discountAmt = itemTotal - totalPrice;
 
       if (item.id === 1) {
         price +=
-          item.qty % 2 === 0 ? itemTotal - item.qty + threshold : item.price;
+          item.qty % 2 === 0
+            ? itemTotal - item.qty + threshold
+            : itemTotal - item.qty + threshold + item.price - item.discountQty;
       } else {
-        price += item.qty % 6 === 0 ? itemTotal - item.price : itemTotal;
+        price +=
+          item.qty % 6 === 0 ? itemTotal - item.price : itemTotal + item.price;
       }
     });
 
