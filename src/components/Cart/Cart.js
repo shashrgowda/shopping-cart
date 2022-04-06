@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Cart.css";
-
 import { connect } from "react-redux";
-
 import CartItem from "./CartItem/CartItem";
+import Helper from "../../utils/helper";
 
 const Cart = ({ cart }) => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -12,30 +11,9 @@ const Cart = ({ cart }) => {
   const [totalDiscountPrice, setTotalDiscountAmount] = useState(0);
 
   useEffect(() => {
-    let items = 0;
-    let price = 0;
-    let actualPrice = 0;
+    const cartPrices = Helper.discountLogic(cart);
 
-    cart.forEach((item) => {
-      items += item.qty;
-      actualPrice += item.qty * item.price;
-      const itemTotal = item.price * item.qty;
-      const threshold = item.qty / item.discountQty;
-      const quotient = Math.floor(item.qty / item.discountQty);
-
-      if (item.id === 1) {
-        price +=
-          item.qty % item.discountQty === 0
-            ? itemTotal - item.qty + threshold
-            : itemTotal - item.qty + threshold + item.price - item.discountQty;
-      } else {
-        price +=
-          item.qty % item.discountQty === 0
-            ? itemTotal - item.price
-            : (itemTotal - item.price * (item.qty - 1)) * item.qty -
-              item.price * quotient;
-      }
-    });
+    const { items, price, actualPrice } = cartPrices;
 
     const discountedAmt = totalActualAmount - totalPrice;
 
@@ -59,7 +37,7 @@ const Cart = ({ cart }) => {
     <div className="cart">
       <div className="cart__items">
         {cart.map((item) => (
-          <CartItem key={item.id} item={item} totalPrice={totalPrice} />
+          <CartItem key={item.id} item={item} />
         ))}
       </div>
       <div className="cart__summary">

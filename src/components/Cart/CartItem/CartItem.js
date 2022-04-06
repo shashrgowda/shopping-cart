@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./CartItem.css";
-
 import { connect } from "react-redux";
 import { adjustItemQty, removeFromCart } from "../../../redux/Shopping/actions";
 
@@ -38,7 +37,7 @@ const CartItem = ({ item, adjustQty, removeFromCart }) => {
         >
           <img
             src="https://cdn-icons.flaticon.com/png/512/484/premium/484611.png?token=exp=1649101913~hmac=28b2c345beb916bcf1003a71e7703443"
-            alt=""
+            alt="Bin Icon"
           />
         </button>
       </div>

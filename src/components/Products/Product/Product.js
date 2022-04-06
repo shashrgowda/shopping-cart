@@ -1,10 +1,8 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { connect } from "react-redux";
 import "./Product.css";
-
 import { loadCurrentItem, addToCart } from "../../../redux/Shopping/actions";
 
 const Product = ({ product, addToCart, loadCurrentItem }) => {

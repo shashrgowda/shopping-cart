@@ -1,6 +1,5 @@
 import React from "react";
 import "./ProductDetail.css";
-
 import { connect } from "react-redux";
 import { addToCart } from "../../redux/Shopping/actions";
 

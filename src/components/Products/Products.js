@@ -1,8 +1,6 @@
 import React from "react";
 import "./Products.css";
-
 import { connect } from "react-redux";
-
 import Product from "./Product/Product";
 
 const Products = ({ products }) => {
